@@ -2,7 +2,8 @@ name: Daily Slack post
 
 on:
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '0 8 * * 1-5' # Run at 08:00 AM every weekday (Monday to Friday)
+      timezone: 'Europe/Copenhagen'
   workflow_dispatch:
 
 jobs:
