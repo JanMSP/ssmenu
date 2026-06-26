@@ -40,6 +40,10 @@ if day_title:
         description = dish.find('div', class_='text').get_text(strip=True)
         menu += f"*_{heading}_*\n{description}\n\n"
 
+        # Tartelet handling
+        if heading == "Dagens ret" and "tarteletter" in description.lower():
+            menu = ":rotating_light: Kode 42 :rotating_light:\n\n" + menu
+
     slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
     requests.post(slack_webhook_url, json={"text": menu}, headers={'Content-Type': 'application/json'})
 
