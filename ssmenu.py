@@ -16,13 +16,13 @@ soup = BeautifulSoup(response.text, 'html.parser')
 
 target_day = "I dag"
 day_names = {
-    0: "Søndag",
-    1: "Mandag",
-    2: "Tirsdag",
-    3: "Onsdag",
-    4: "Torsdag",
-    5: "Fredag",
-    6: "Lørdag"
+    0: "Mandag",
+    1: "Tirsdag",
+    2: "Onsdag",
+    3: "Torsdag",
+    4: "Fredag",
+    5: "Lørdag",
+    6: "Søndag"
 }
 
 day_title = soup.find('h2', class_='day-title', string=target_day)
@@ -46,6 +46,3 @@ if day_title:
 
     slack_webhook_url = os.environ.get('SLACK_WEBHOOK_URL')
     requests.post(slack_webhook_url, json={"text": menu}, headers={'Content-Type': 'application/json'})
-
-else:
-    print(f"Could not find a section matching '{target_day}'")
